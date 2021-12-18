@@ -1,7 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:bloc/bloc.dart';
 
 import 'app.dart';
+import 'blocs/blocs_observer.dart';
 
 void main() {
-  runApp(const App());
+  BlocOverrides.runZoned(() => const App(),
+    blocObserver: MyBlocObserver(),
+  );
 }

@@ -27,6 +27,13 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  #bloc
+  bloc: ^8.0.1
+  flutter_bloc: ^8.0.0
+  equatable: ^2.0.3
+
+  #debug tools
+  logger: ^1.1.0
   flutter:
     sdk: flutter
 
