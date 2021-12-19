@@ -35,6 +35,10 @@ dependencies:
 
   #debug tools
   logger: ^1.1.0
+
+  #fonts
+  google_fonts: ^2.1.0
+
   flutter:
     sdk: flutter
   # 多國語系
@@ -72,6 +76,8 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+  assets:
+    - google_fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

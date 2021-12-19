@@ -28,7 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid E-Mail"),
         "invalidPassword":
             MessageLookupByLibrary.simpleMessage("Invalid Password"),
-        "loginPageTitle": MessageLookupByLibrary.simpleMessage("Log In"),
+        "loginPageTitle": MessageLookupByLibrary.simpleMessage("Log in"),
         "password": MessageLookupByLibrary.simpleMessage("Password")
       };
 }

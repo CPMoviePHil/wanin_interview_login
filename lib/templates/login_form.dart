@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:wanin_interview_login/blocs/blocs.dart';
 import 'package:wanin_interview_login/generated/l10n.dart';
+import 'package:wanin_interview_login/types/types.dart';
 import 'package:wanin_interview_login/utils/utils.dart';
 
 class LoginForm extends StatelessWidget {
@@ -22,13 +23,24 @@ class LoginForm extends StatelessWidget {
           );
         }
       },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _Email(),
-          _Password(),
-          _LoginButton(),
-        ],
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          //mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(height: MediaQuery.of(context).size.height * 0.2,),
+            WidgetsHelper.appText(
+              text: S.of(context).loginPageTitle,
+              size: WidgetSize.extremeLarge,
+            ),
+            const SizedBox(height: 35,),
+            _Email(),
+            const SizedBox(height: 25,),
+            _Password(),
+            _LoginButton(),
+          ],
+        ),
       ),
     );
   }

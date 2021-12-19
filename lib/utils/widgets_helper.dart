@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:wanin_interview_login/types/types.dart';
 
 typedef TextFormFieldOnChange = Function(String str);
@@ -107,12 +108,14 @@ class WidgetsHelper {
     TextDecoration? decoration,
   }) {
     double fontSize = _size(size: size);
-    return TextStyle(
-      color: fontColor,
-      fontSize: fontSize,
-      height: lineSpacing,
-      letterSpacing: letterSpacing,
-      decoration: decoration,
+    return GoogleFonts.comfortaa(
+      textStyle: TextStyle(
+        color: fontColor,
+        fontSize: fontSize,
+        height: lineSpacing,
+        letterSpacing: letterSpacing,
+        decoration: decoration,
+      ),
     );
   }
 
@@ -176,6 +179,17 @@ class WidgetsHelper {
     return InputDecoration(
       hintText: hintMessage,
       errorText: errorMessage,
+      enabledBorder: _inputBorder(),
+      focusedBorder: _inputBorder(),
+    );
+  }
+
+  static InputBorder _inputBorder() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(0),
+      borderSide: const BorderSide(
+        color: Colors.black,
+      ),
     );
   }
 
