@@ -8,14 +8,13 @@ import 'package:wanin_interview_login/models/models.dart';
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
-class AuthenticationBloc
-    extends Bloc<AuthenticationEvent, AuthenticationState> {
+class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   AuthenticationBloc ({
     required AuthenticationRepository authenticationRepository,
     required UserRepository userRepository,
-  })  : _authenticationRepository = authenticationRepository,
-        _userRepository = userRepository,
-        super(const AuthenticationState.unknown()) {
+  }) : _authenticationRepository = authenticationRepository, _userRepository = userRepository, super(
+        const AuthenticationState.unknown(),
+      ) {
     on<AuthenticationStatusChanged>(_onAuthenticationStatusChanged);
     on<AuthenticationLogoutRequested>(_onAuthenticationLogoutRequested);
     _authenticationStatusSubscription = _authenticationRepository.status.listen(
@@ -25,8 +24,7 @@ class AuthenticationBloc
 
   final AuthenticationRepository _authenticationRepository;
   final UserRepository _userRepository;
-  late StreamSubscription<AuthenticationStatus>
-  _authenticationStatusSubscription;
+  late StreamSubscription<AuthenticationStatus>_authenticationStatusSubscription;
 
   @override
   Future<void> close() {

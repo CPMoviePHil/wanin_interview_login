@@ -5,6 +5,7 @@ import 'generated/l10n.dart';
 import 'screens/screens.dart';
 import 'package:wanin_interview_login/repositories/repositories.dart';
 import 'package:wanin_interview_login/blocs/blocs.dart';
+import 'package:wanin_interview_login/configs/configs.dart';
 
 class App extends StatelessWidget {
 
@@ -26,17 +27,21 @@ class App extends StatelessWidget {
           authenticationRepository: authenticationRepository,
           userRepository: userRepository,
         ),
-        child: _AppView(),
+        child: const AppView(),
       ),
     );
   }
 }
 
-class _AppView extends StatefulWidget {
-  @override _AppViewState createState() => _AppViewState();
+class AppView extends StatefulWidget {
+
+  const AppView({Key? key}) : super(key: key);
+
+  @override
+  _AppViewState createState() => _AppViewState();
 }
 
-class _AppViewState extends State<_AppView> {
+class _AppViewState extends State<AppView> {
 
   final _navigatorKey = GlobalKey<NavigatorState>();
 
@@ -45,7 +50,8 @@ class _AppViewState extends State<_AppView> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      key: _navigatorKey,
+      debugShowCheckedModeBanner: kEnv,
+      navigatorKey: _navigatorKey,
       builder: (context, child) {
         return BlocListener<AuthenticationBloc, AuthenticationState>(
           listener: (context, state) {
@@ -58,8 +64,7 @@ class _AppViewState extends State<_AppView> {
                 break;
               case AuthenticationStatus.unauthenticated:
                 _navigator.pushAndRemoveUntil<void>(
-                  LoginPage.route(),
-                      (route) => false,
+                  LoginPage.route(), (route) => false,
                 );
                 break;
               default:
@@ -76,7 +81,7 @@ class _AppViewState extends State<_AppView> {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      onGenerateRoute: (RouteSettings routeSettings) => LoginPage.route(),
+      onGenerateRoute: (RouteSettings routeSettings) => LoadingPage.route(),
     );
   }
 }
