@@ -31,6 +31,7 @@ dependencies:
   bloc: ^8.0.1
   flutter_bloc: ^8.0.0
   equatable: ^2.0.3
+  formz: ^0.4.1
 
   #debug tools
   logger: ^1.1.0

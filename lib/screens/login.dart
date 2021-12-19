@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:wanin_interview_login/generated/l10n.dart';
 
 class LoginPage extends StatelessWidget {
 
-  const LoginPage ({
+  LoginPage ({
     Key? key,
   }) : super (key: key,);
 
-  static const String routeName = "/login";
+  static Route route() {
+    return MaterialPageRoute<void>(
+      builder: (_) => LoginPage(),
+    );
+  }
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Text(S.of(context).loginPageTitle)
-        ],
-      ),
-    );
+    throw UnimplementedError();
   }
 }

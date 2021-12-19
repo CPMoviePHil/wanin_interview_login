@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class NotFoundPage extends StatelessWidget {
 
@@ -6,7 +7,11 @@ class NotFoundPage extends StatelessWidget {
     Key? key,
   }) : super (key: key,);
 
-  static const String routeName = "/not_found";
+  static Route route() {
+    return MaterialPageRoute<void>(
+      builder: (_) => const NotFoundPage(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
