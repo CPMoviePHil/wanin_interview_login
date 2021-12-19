@@ -1,5 +1,6 @@
 {
   "loginPageTitle": "Log in",
+  "login": "log in",
   "email": "E-Mail",
   "invalidEmail": "Invalid E-Mail",
   "password": "Password",

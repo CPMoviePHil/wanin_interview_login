@@ -28,7 +28,7 @@ class LoginForm extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           //mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             SizedBox(height: MediaQuery.of(context).size.height * 0.2,),
             WidgetsHelper.appText(
               text: S.of(context).loginPageTitle,
@@ -36,10 +36,14 @@ class LoginForm extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
             const SizedBox(height: 35,),
-            _Email(),
+            const _Email(),
             const SizedBox(height: 25,),
-            _Password(),
-            _LoginButton(),
+            const _Password(),
+            const SizedBox(height: 25,),
+            const SizedBox(
+              width: double.infinity,
+              child: _LoginSubmit(),
+            ),
           ],
         ),
       ),
@@ -48,6 +52,9 @@ class LoginForm extends StatelessWidget {
 }
 
 class _Email extends StatelessWidget {
+
+  const _Email({Key? key,}) : super(key: key,);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
@@ -67,6 +74,9 @@ class _Email extends StatelessWidget {
 }
 
 class _Password extends StatelessWidget {
+
+  const _Password({Key? key,}) : super(key: key,);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
@@ -84,22 +94,23 @@ class _Password extends StatelessWidget {
   }
 }
 
-class _LoginButton extends StatelessWidget {
+class _LoginSubmit extends StatelessWidget {
+
+  const _LoginSubmit({Key? key}) : super(key: key,);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
-        return state.status.isSubmissionInProgress
-            ? const CircularProgressIndicator()
-            : ElevatedButton(
-          key: const Key('loginForm_continue_raisedButton'),
-          child: const Text('Login'),
-          onPressed: state.status.isValidated
-              ? () {
-            context.read<LoginBloc>().add(const LoginSubmitted());
-          }
-              : null,
+        return WidgetsHelper.appButton(
+          context: context,
+          buttonLabel: S.of(context).login.toUpperCase(),
+          color: Colors.black,
+          fontColor: Colors.white,
+          padding: const EdgeInsets.symmetric(vertical: 20,),
+          fontWeight: FontWeight.w600,
+          onPressed: state.status.isValidated ? () => context.read<LoginBloc>().add(const LoginSubmitted()) : null,
         );
       },
     );

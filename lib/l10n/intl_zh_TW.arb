@@ -1,5 +1,6 @@
 {
   "loginPageTitle": "登入",
+  "login": "log in",
   "email": "電子信箱",
   "invalidEmail": "信箱格式錯誤",
   "password": "密碼",

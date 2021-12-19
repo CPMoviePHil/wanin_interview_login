@@ -60,6 +60,16 @@ class S {
     );
   }
 
+  /// `log in`
+  String get login {
+    return Intl.message(
+      'log in',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `E-Mail`
   String get email {
     return Intl.message(

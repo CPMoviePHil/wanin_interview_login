@@ -18,6 +18,52 @@ class WidgetsHelper {
     );
   }
 
+  static ElevatedButton appButton ({
+    required BuildContext context,
+    required String buttonLabel,
+    VoidCallback? onPressed,
+    Color? color,
+    Color? fontColor,
+    WidgetSize? size,
+    FontWeight? fontWeight,
+    EdgeInsetsGeometry? padding,
+  }) {
+    color ??= Theme.of(context).primaryColor;
+    return ElevatedButton(
+      child: appText(
+        text: buttonLabel,
+        size: size,
+        fontWeight: fontWeight,
+        fontColor: fontColor,
+      ),
+      onPressed: onPressed,
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all(padding),
+        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+              (Set<MaterialState> states) {
+            if (color != null) {
+              if (states.contains(MaterialState.pressed)) {
+                return color;
+              }
+              else if (states.contains(MaterialState.disabled)) {
+                return color;
+              } else {
+                return color;
+              }
+            } else {
+              return Theme.of(context).primaryColor;
+            }
+          },
+        ),
+      ),
+      /*style: ElevatedButton.styleFrom(
+        primary: color,
+        onSurface: color,
+        padding: padding,
+      ),*/
+    );
+  }
+
   static Icon appIcon ({
     required IconData icon,
     Color? iconColor,
@@ -216,7 +262,7 @@ class WidgetsHelper {
       case WidgetSize.extremeSmall:
         return 12;
       default :
-        return 20;
+        return 18;
     }
   }
 }
