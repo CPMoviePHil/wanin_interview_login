@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/screens.dart';
 
 class App extends StatelessWidget {
 
@@ -10,6 +11,19 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Container(),
+      onGenerateRoute: (RouteSettings routeSettings) {
+        return MaterialPageRoute<void>(
+          settings: routeSettings,
+          builder: (BuildContext context) {
+            switch (routeSettings.name) {
+              case LoginPage.routeName:
+                return const LoginPage();
+              default:
+                return const NotFoundPage();
+            }
+          },
+        );
+      },
     );
   }
 }
