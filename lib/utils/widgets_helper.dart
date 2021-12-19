@@ -56,6 +56,7 @@ class WidgetsHelper {
     WidgetSize? size,
     TextStyle? style,
     Color? fontColor,
+    FontWeight? fontWeight,
     TextAlign? align,
     double? lineSpacing,
     double? letterSpacing,
@@ -67,6 +68,7 @@ class WidgetsHelper {
       style: style ?? appTextStyle(
         size: size,
         fontColor: fontColor,
+        fontWeight: fontWeight,
         align: align,
         lineSpacing: lineSpacing,
         letterSpacing: letterSpacing,
@@ -106,9 +108,11 @@ class WidgetsHelper {
     double? lineSpacing,
     double? letterSpacing,
     TextDecoration? decoration,
+    FontWeight? fontWeight,
   }) {
     double fontSize = _size(size: size);
     return GoogleFonts.comfortaa(
+      fontWeight: fontWeight,
       textStyle: TextStyle(
         color: fontColor,
         fontSize: fontSize,
@@ -128,15 +132,17 @@ class WidgetsHelper {
     WidgetSize? size,
     int? maxLines,
     Color? fontColor,
+    FontWeight? fontWeight,
     String? errorMessage,
     String? hintMessage,
   }) {
-    fontColor ??= Theme.of(context).highlightColor;
+    fontColor ??= Colors.black;
     maxLines ??= 1;
     return TextFormField(
       style: appTextStyle(
         size: size,
         fontColor: fontColor,
+        fontWeight: fontWeight,
       ),
       controller: controller,
       onChanged: onChange,
@@ -179,16 +185,19 @@ class WidgetsHelper {
     return InputDecoration(
       hintText: hintMessage,
       errorText: errorMessage,
-      enabledBorder: _inputBorder(),
-      focusedBorder: _inputBorder(),
+      enabledBorder: _inputBorder(color: Colors.black,),
+      focusedBorder: _inputBorder(color: Colors.black,),
+      border: _inputBorder(color: Colors.black,),
+      errorBorder: _inputBorder(color: Colors.red,),
     );
   }
 
-  static InputBorder _inputBorder() {
+  static InputBorder _inputBorder({required Color color,}) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(0),
-      borderSide: const BorderSide(
-        color: Colors.black,
+      borderSide: BorderSide(
+        color: color,
+        width: 3,
       ),
     );
   }

@@ -33,6 +33,7 @@ class LoginForm extends StatelessWidget {
             WidgetsHelper.appText(
               text: S.of(context).loginPageTitle,
               size: WidgetSize.extremeLarge,
+              fontWeight: FontWeight.w600,
             ),
             const SizedBox(height: 35,),
             _Email(),
