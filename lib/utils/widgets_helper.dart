@@ -178,11 +178,13 @@ class WidgetsHelper {
     WidgetSize? size,
     int? maxLines,
     Color? fontColor,
+    Color? cursorColor,
     FontWeight? fontWeight,
     String? errorMessage,
     String? hintMessage,
   }) {
     fontColor ??= Colors.black;
+    cursorColor ??= Colors.black;
     maxLines ??= 1;
     return TextFormField(
       style: appTextStyle(
@@ -190,6 +192,7 @@ class WidgetsHelper {
         fontColor: fontColor,
         fontWeight: fontWeight,
       ),
+      cursorColor: cursorColor,
       controller: controller,
       onChanged: onChange,
       obscureText: obscure,
