@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wanin_interview_login/generated/l10n.dart';
 
 class LoginPage extends StatelessWidget {
 
@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-
+          Text(S.of(context).loginPageTitle)
         ],
       ),
     );
