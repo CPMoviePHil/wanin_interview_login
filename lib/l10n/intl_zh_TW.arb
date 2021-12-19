@@ -1,5 +1,8 @@
 {
   "loginPageTitle": "登入",
   "email": "電子信箱",
-  "password": "密碼"
+  "invalidEmail": "信箱格式錯誤",
+  "password": "密碼",
+  "invalidPassword": "密碼錯誤",
+  "authenticationFailure": "認證失敗"
 }

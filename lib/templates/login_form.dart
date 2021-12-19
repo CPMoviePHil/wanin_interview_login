@@ -2,74 +2,69 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:wanin_interview_login/blocs/blocs.dart';
+import 'package:wanin_interview_login/generated/l10n.dart';
+import 'package:wanin_interview_login/utils/utils.dart';
 
 class LoginForm extends StatelessWidget {
 
-  const LoginForm({Key? key}) : super(key: key);
+  const LoginForm ({
+    Key? key
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state.status.isSubmissionFailure) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              const SnackBar(content: Text('Authentication Failure')),
-            );
+          final messenger = SnackBarHelper.init(context: context);
+          messenger.showSnackBar(
+            message: S.of(context).authenticationFailure,
+          );
         }
       },
-      child: Align(
-        alignment: const Alignment(0, -1 / 3),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _UsernameInput(),
-            const Padding(padding: EdgeInsets.all(12)),
-            _PasswordInput(),
-            const Padding(padding: EdgeInsets.all(12)),
-            _LoginButton(),
-          ],
-        ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _Email(),
+          _Password(),
+          _LoginButton(),
+        ],
       ),
     );
   }
 }
 
-class _UsernameInput extends StatelessWidget {
+class _Email extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
-        return TextField(
-          key: const Key('loginForm_usernameInput_textField'),
-          onChanged: (email) => context.read<LoginBloc>().add(LoginEmailChanged(email)),
-          decoration: InputDecoration(
-            labelText: 'username',
-            errorText: state.email.invalid ? 'invalid username' : null,
+        return WidgetsHelper.appTextFormField(
+          context: context,
+          onChange: (email) => context.read<LoginBloc>().add(
+            LoginEmailChanged(email),
           ),
+          hintMessage: S.of(context).email,
+          errorMessage: state.email.invalid ? S.of(context).invalidEmail : null,
         );
       },
     );
   }
 }
 
-class _PasswordInput extends StatelessWidget {
+class _Password extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
-        return TextField(
-          key: const Key('loginForm_passwordInput_textField'),
-          onChanged: (password) =>
-              context.read<LoginBloc>().add(LoginPasswordChanged(password)),
-          obscureText: true,
-          decoration: InputDecoration(
-            labelText: 'password',
-            errorText: state.password.invalid ? 'invalid password' : null,
-          ),
+        return WidgetsHelper.appTextFormField(
+          context: context,
+          onChange: (password) => context.read<LoginBloc>().add(LoginPasswordChanged(password)),
+          obscure: true,
+          hintMessage: S.of(context).password,
+          errorMessage: state.password.invalid ? S.of(context).invalidPassword : null,
         );
       },
     );

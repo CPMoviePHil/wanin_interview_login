@@ -15,6 +15,7 @@ class LoginPage extends StatelessWidget {
       builder: (_) => const LoginPage(),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

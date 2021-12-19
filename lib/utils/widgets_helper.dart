@@ -117,15 +117,16 @@ class WidgetsHelper {
   }
 
   static TextFormField appTextFormField ({
-    required BuildContext context,
-    required TextEditingController controller,
     bool enableSuggestions = false,
     bool obscure = false,
-    required TextFormFieldOnChange? onChange,
-    required InputDecoration decoration,
+    required BuildContext context,
+    TextFormFieldOnChange? onChange,
+    TextEditingController? controller,
     WidgetSize? size,
     int? maxLines,
     Color? fontColor,
+    String? errorMessage,
+    String? hintMessage,
   }) {
     fontColor ??= Theme.of(context).highlightColor;
     maxLines ??= 1;
@@ -138,7 +139,10 @@ class WidgetsHelper {
       onChanged: onChange,
       obscureText: obscure,
       enableSuggestions: enableSuggestions,
-      decoration: decoration,
+      decoration: _textFieldDecoration(
+        hintMessage: hintMessage,
+        errorMessage: errorMessage,
+      ),
       maxLines: maxLines,
     );
   }
@@ -162,6 +166,16 @@ class WidgetsHelper {
       enableSuggestions: false,
       readOnly: true,
       decoration: decoration,
+    );
+  }
+
+  static InputDecoration _textFieldDecoration ({
+    String? errorMessage,
+    String? hintMessage,
+  }) {
+    return InputDecoration(
+      hintText: hintMessage,
+      errorText: errorMessage,
     );
   }
 

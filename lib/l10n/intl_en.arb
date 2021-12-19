@@ -1,5 +1,8 @@
 {
   "loginPageTitle": "Log In",
   "email": "E-Mail",
-  "password": "Password"
+  "invalidEmail": "Invalid E-Mail",
+  "password": "Password",
+  "invalidPassword": "Invalid Password",
+  "authenticationFailure": "Authentication Failure"
 }
