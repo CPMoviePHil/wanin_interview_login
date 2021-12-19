@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wanin_interview_login/templates/templates.dart';
 
 class LoadingPage extends StatelessWidget {
 
@@ -11,7 +12,7 @@ class LoadingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: CircularProgressIndicator()),
+      body: Center(child: LoadingWidget()),
     );
   }
 }

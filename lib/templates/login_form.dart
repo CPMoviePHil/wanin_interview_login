@@ -15,11 +15,18 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
-      listener: (context, state) {
+      listener: (context, state) async {
+        final messenger = SnackBarHelper.init(context: context);
+        final dialogHelper = DialogHelper.init(context: context);
         if (state.status.isSubmissionFailure) {
-          final messenger = SnackBarHelper.init(context: context);
+          dialogHelper.dismissDialog();
           messenger.showSnackBar(
             message: S.of(context).authenticationFailure,
+          );
+        } else if (state.status.isSubmissionInProgress) {
+          dialogHelper.appShowDialog(
+            dismissible: false,
+            type: DialogType.loading,
           );
         }
       },
