@@ -179,6 +179,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Updated Successfully!`
+  String get changePasswordSuccessfully {
+    return Intl.message(
+      'Updated Successfully!',
+      name: 'changePasswordSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Different Password!`
+  String get changePasswordError1 {
+    return Intl.message(
+      'Different Password!',
+      name: 'changePasswordError1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not Signed in yet!`
+  String get changePasswordError2 {
+    return Intl.message(
+      'Not Signed in yet!',
+      name: 'changePasswordError2',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

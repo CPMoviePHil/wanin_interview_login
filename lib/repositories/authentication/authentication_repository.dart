@@ -78,6 +78,7 @@ class AuthenticationRepository {
 
   void logOut() {
     _controller.add(AuthenticationStatus.unauthenticated);
+    FirebaseAuth.instance.signOut();
   }
 
   void dispose() => _controller.close();

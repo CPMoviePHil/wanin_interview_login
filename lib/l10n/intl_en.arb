@@ -11,5 +11,8 @@
   "changePasswordPageTitle": "Change password",
   "newPassword": "new password",
   "confirmPassword": "type again",
-  "changePasswordSubmit": "submit"
+  "changePasswordSubmit": "submit",
+  "changePasswordSuccessfully": "Updated Successfully!",
+  "changePasswordError1": "Different Password!",
+  "changePasswordError2": "Not Signed in yet!"
 }

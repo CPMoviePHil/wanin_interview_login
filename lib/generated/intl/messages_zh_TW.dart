@@ -27,8 +27,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "afterLoginGreeting": m0,
         "authenticationFailure": MessageLookupByLibrary.simpleMessage("認證失敗"),
         "changePassword": MessageLookupByLibrary.simpleMessage("更改密碼"),
+        "changePasswordError1": MessageLookupByLibrary.simpleMessage("密碼不同"),
+        "changePasswordError2": MessageLookupByLibrary.simpleMessage("尚未登入"),
         "changePasswordPageTitle": MessageLookupByLibrary.simpleMessage("更改密碼"),
         "changePasswordSubmit": MessageLookupByLibrary.simpleMessage("確認"),
+        "changePasswordSuccessfully":
+            MessageLookupByLibrary.simpleMessage("更新成功"),
         "confirmPassword": MessageLookupByLibrary.simpleMessage("再次輸入"),
         "email": MessageLookupByLibrary.simpleMessage("電子信箱"),
         "invalidEmail": MessageLookupByLibrary.simpleMessage("信箱格式錯誤"),

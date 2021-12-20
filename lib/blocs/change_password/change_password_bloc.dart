@@ -1,17 +1,24 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:formz/formz.dart';
 import 'package:wanin_interview_login/blocs/fields/password.dart';
+import 'package:wanin_interview_login/generated/l10n.dart';
+import 'package:wanin_interview_login/repositories/repositories.dart';
 
 part 'change_password_event.dart';
 part 'change_password_state.dart';
 
 class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState> {
-  ChangePasswordBloc() : super(const ChangePasswordState()) {
+  ChangePasswordBloc({
+    required AuthenticationRepository authenticationRepository,
+  }) : _authenticationRepository = authenticationRepository, super(const ChangePasswordState()) {
     on<NewPasswordChanged>(_onNewPasswordChanged);
     on<ConfirmPasswordChanged>(_onConfirmPasswordChanged);
     on<ChangePasswordSubmitted>(_onSubmitted);
   }
+
+  final AuthenticationRepository _authenticationRepository;
 
   void _onNewPasswordChanged(
       NewPasswordChanged event,
@@ -41,14 +48,32 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState> 
       ) async {
     if (state.status.isValidated) {
       emit(state.copyWith(status: FormzStatus.submissionInProgress));
-      try {
-        /*await _authenticationRepository.logIn(
-          email: state.email.value,
-          password: state.password.value,
-        );*/
-        emit(state.copyWith(status: FormzStatus.submissionSuccess));
-      } catch (_) {
-        emit(state.copyWith(status: FormzStatus.submissionFailure));
+      print("state:${state.password} :${state.confirmPassword}");
+      if (state.password.value == state.confirmPassword.value) {
+        final currentUser = FirebaseAuth.instance.currentUser;
+        print("currentUser:$currentUser");
+        if (currentUser != null) {
+          try {
+            await currentUser.updatePassword(state.password.value);
+            _authenticationRepository.logOut();
+            emit(state.copyWith(status: FormzStatus.submissionSuccess));
+          } catch (_) {
+            emit(state.copyWith(
+              status: FormzStatus.submissionFailure,
+              error: _.toString(),
+            ));
+          }
+        } else {
+          emit(state.copyWith(
+            status: FormzStatus.submissionFailure,
+            error: S.current.changePasswordError2,
+          ));
+        }
+      } else {
+        emit(state.copyWith(
+          status: FormzStatus.submissionFailure,
+          error: S.current.changePasswordError1,
+        ));
       }
     }
   }

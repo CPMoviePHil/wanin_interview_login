@@ -29,9 +29,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Authentication Failure"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("change password"),
+        "changePasswordError1":
+            MessageLookupByLibrary.simpleMessage("Different Password!"),
+        "changePasswordError2":
+            MessageLookupByLibrary.simpleMessage("Not Signed in yet!"),
         "changePasswordPageTitle":
             MessageLookupByLibrary.simpleMessage("Change password"),
         "changePasswordSubmit": MessageLookupByLibrary.simpleMessage("submit"),
+        "changePasswordSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Updated Successfully!"),
         "confirmPassword": MessageLookupByLibrary.simpleMessage("type again"),
         "email": MessageLookupByLibrary.simpleMessage("E-Mail"),
         "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid E-Mail"),

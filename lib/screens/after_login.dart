@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wanin_interview_login/generated/l10n.dart';
+import 'package:wanin_interview_login/repositories/repositories.dart';
 import 'package:wanin_interview_login/utils/utils.dart';
 import 'package:wanin_interview_login/models/models.dart';
 import 'package:wanin_interview_login/types/types.dart';
@@ -9,18 +10,22 @@ import 'screens.dart';
 class AfterLoginPage extends StatelessWidget {
 
   final User user;
+  final AuthenticationRepository _authenticationRepository;
 
   const AfterLoginPage ({
     Key? key,
     required this.user,
-  }) : super (key: key,);
+    required AuthenticationRepository authenticationRepository,
+  }) : _authenticationRepository = authenticationRepository, super (key: key,);
 
   static Route route({
     required User user,
+    required AuthenticationRepository authenticationRepository,
   }) {
     return MaterialPageRoute<void>(
       builder: (_) => AfterLoginPage(
         user: user,
+        authenticationRepository: authenticationRepository,
       ),
     );
   }
@@ -48,7 +53,9 @@ class AfterLoginPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 20,),
                 fontWeight: FontWeight.w600,
                 onPressed: () => Navigator.of(context).pushAndRemoveUntil<void>(
-                  ChangePasswordPage.route(), (route) => false,
+                  ChangePasswordPage.route(
+                    authenticationRepository: _authenticationRepository,
+                  ), (route) => false,
                 ),
               ),
             ],

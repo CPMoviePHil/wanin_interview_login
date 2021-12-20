@@ -11,5 +11,8 @@
   "changePasswordPageTitle": "更改密碼",
   "newPassword": "新密碼",
   "confirmPassword": "再次輸入",
-  "changePasswordSubmit": "確認"
+  "changePasswordSubmit": "確認",
+  "changePasswordSuccessfully": "更新成功",
+  "changePasswordError1": "密碼不同",
+  "changePasswordError2": "尚未登入"
 }

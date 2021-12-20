@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:wanin_interview_login/generated/l10n.dart';
 import 'package:wanin_interview_login/utils/utils.dart';
 import 'package:wanin_interview_login/types/types.dart';
 import 'package:wanin_interview_login/blocs/blocs.dart';
+import 'package:wanin_interview_login/screens/screens.dart';
 
 import 'templates.dart';
 
@@ -15,23 +17,47 @@ class ChangePasswordForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      //mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        SizedBox(height: MediaQuery.of(context).size.height * 0.2,),
-        WidgetsHelper.appText(
-          text: S.of(context).changePasswordPageTitle,
-          size: WidgetSize.extremeLarge,
-          fontWeight: FontWeight.w600,
-        ),
-        const SizedBox(height: 35,),
-        const _NewPassword(),
-        const SizedBox(height: 25,),
-        const _ConfirmPassword(),
-        const SizedBox(height: 25,),
-        const ChangePasswordButton(),
-      ],
+    return BlocListener<ChangePasswordBloc, ChangePasswordState>(
+      listener: (context, state) async {
+        final messenger = SnackBarHelper.init(context: context);
+        final dialogHelper = DialogHelper.init(context: context);
+        if (state.status.isSubmissionFailure) {
+          dialogHelper.dismissDialog();
+          messenger.showSnackBar(
+            message: state.error!,
+          );
+        } else if (state.status.isSubmissionInProgress) {
+          dialogHelper.appShowDialog(
+            dismissible: false,
+            type: DialogType.loading,
+          );
+        } else if (state.status.isSubmissionSuccess) {
+          messenger.showSnackBar(message: S.of(context).changePasswordSuccessfully,);
+          await Future.delayed(const Duration(seconds: 1), () {
+            Navigator.of(context).pushAndRemoveUntil<void>(
+              LoginPage.route(), (route) => false,
+            );
+          },);
+        }
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        //mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(height: MediaQuery.of(context).size.height * 0.2,),
+          WidgetsHelper.appText(
+            text: S.of(context).changePasswordPageTitle,
+            size: WidgetSize.extremeLarge,
+            fontWeight: FontWeight.w600,
+          ),
+          const SizedBox(height: 35,),
+          const _NewPassword(),
+          const SizedBox(height: 25,),
+          const _ConfirmPassword(),
+          const SizedBox(height: 25,),
+          const ChangePasswordButton(),
+        ],
+      ),
     );
   }
 }
