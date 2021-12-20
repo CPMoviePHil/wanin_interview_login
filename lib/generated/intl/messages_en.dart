@@ -29,12 +29,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Authentication Failure"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("change password"),
+        "changePasswordPageTitle":
+            MessageLookupByLibrary.simpleMessage("Change password"),
+        "changePasswordSubmit": MessageLookupByLibrary.simpleMessage("submit"),
+        "confirmPassword": MessageLookupByLibrary.simpleMessage("type again"),
         "email": MessageLookupByLibrary.simpleMessage("E-Mail"),
         "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid E-Mail"),
         "invalidPassword":
             MessageLookupByLibrary.simpleMessage("Invalid Password"),
         "login": MessageLookupByLibrary.simpleMessage("log in"),
         "loginPageTitle": MessageLookupByLibrary.simpleMessage("Log in"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("new password"),
         "password": MessageLookupByLibrary.simpleMessage("Password")
       };
 }

@@ -139,6 +139,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Change password`
+  String get changePasswordPageTitle {
+    return Intl.message(
+      'Change password',
+      name: 'changePasswordPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `new password`
+  String get newPassword {
+    return Intl.message(
+      'new password',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `type again`
+  String get confirmPassword {
+    return Intl.message(
+      'type again',
+      name: 'confirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `submit`
+  String get changePasswordSubmit {
+    return Intl.message(
+      'submit',
+      name: 'changePasswordSubmit',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

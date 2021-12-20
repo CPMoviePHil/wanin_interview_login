@@ -7,5 +7,9 @@
   "invalidPassword": "密碼錯誤",
   "authenticationFailure": "認證失敗",
   "afterLoginGreeting": "你好, {userName}",
-  "changePassword": "更改密碼"
+  "changePassword": "更改密碼",
+  "changePasswordPageTitle": "更改密碼",
+  "newPassword": "新密碼",
+  "confirmPassword": "再次輸入",
+  "changePasswordSubmit": "確認"
 }

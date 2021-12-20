@@ -27,11 +27,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "afterLoginGreeting": m0,
         "authenticationFailure": MessageLookupByLibrary.simpleMessage("認證失敗"),
         "changePassword": MessageLookupByLibrary.simpleMessage("更改密碼"),
+        "changePasswordPageTitle": MessageLookupByLibrary.simpleMessage("更改密碼"),
+        "changePasswordSubmit": MessageLookupByLibrary.simpleMessage("確認"),
+        "confirmPassword": MessageLookupByLibrary.simpleMessage("再次輸入"),
         "email": MessageLookupByLibrary.simpleMessage("電子信箱"),
         "invalidEmail": MessageLookupByLibrary.simpleMessage("信箱格式錯誤"),
         "invalidPassword": MessageLookupByLibrary.simpleMessage("密碼錯誤"),
         "login": MessageLookupByLibrary.simpleMessage("log in"),
         "loginPageTitle": MessageLookupByLibrary.simpleMessage("登入"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("新密碼"),
         "password": MessageLookupByLibrary.simpleMessage("密碼")
       };
 }

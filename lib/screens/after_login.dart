@@ -4,6 +4,7 @@ import 'package:wanin_interview_login/utils/utils.dart';
 import 'package:wanin_interview_login/models/models.dart';
 import 'package:wanin_interview_login/types/types.dart';
 import 'package:wanin_interview_login/templates/templates.dart';
+import 'screens.dart';
 
 class AfterLoginPage extends StatelessWidget {
 
@@ -46,7 +47,9 @@ class AfterLoginPage extends StatelessWidget {
                 fontColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 20,),
                 fontWeight: FontWeight.w600,
-                onPressed: null,
+                onPressed: () => Navigator.of(context).pushAndRemoveUntil<void>(
+                  ChangePasswordPage.route(), (route) => false,
+                ),
               ),
             ],
           ),
