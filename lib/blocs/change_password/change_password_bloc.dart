@@ -48,15 +48,13 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState> 
       ) async {
     if (state.status.isValidated) {
       emit(state.copyWith(status: FormzStatus.submissionInProgress));
-      print("state:${state.password} :${state.confirmPassword}");
       if (state.password.value == state.confirmPassword.value) {
         final currentUser = FirebaseAuth.instance.currentUser;
-        print("currentUser:$currentUser");
         if (currentUser != null) {
           try {
             await currentUser.updatePassword(state.password.value);
-            _authenticationRepository.logOut();
             emit(state.copyWith(status: FormzStatus.submissionSuccess));
+            _authenticationRepository.logOut();
           } catch (_) {
             emit(state.copyWith(
               status: FormzStatus.submissionFailure,

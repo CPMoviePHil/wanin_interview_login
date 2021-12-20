@@ -5,7 +5,6 @@ import 'package:wanin_interview_login/generated/l10n.dart';
 import 'package:wanin_interview_login/utils/utils.dart';
 import 'package:wanin_interview_login/types/types.dart';
 import 'package:wanin_interview_login/blocs/blocs.dart';
-import 'package:wanin_interview_login/screens/screens.dart';
 
 import 'templates.dart';
 
@@ -33,11 +32,7 @@ class ChangePasswordForm extends StatelessWidget {
           );
         } else if (state.status.isSubmissionSuccess) {
           messenger.showSnackBar(message: S.of(context).changePasswordSuccessfully,);
-          await Future.delayed(const Duration(seconds: 1), () {
-            Navigator.of(context).pushAndRemoveUntil<void>(
-              LoginPage.route(), (route) => false,
-            );
-          },);
+          dialogHelper.dismissDialog();
         }
       },
       child: Column(
