@@ -22,7 +22,7 @@ class LoginForm extends StatelessWidget {
         if (state.status.isSubmissionFailure) {
           dialogHelper.dismissDialog();
           messenger.showSnackBar(
-            message: S.of(context).authenticationFailure,
+            message: state.error!,
           );
         } else if (state.status.isSubmissionInProgress) {
           dialogHelper.appShowDialog(
