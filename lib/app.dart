@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'generated/l10n.dart';
 import 'screens/screens.dart';
-import 'package:wanin_interview_login/repositories/repositories.dart';
-import 'package:wanin_interview_login/blocs/blocs.dart';
-import 'package:wanin_interview_login/configs/configs.dart';
+import 'repositories/repositories.dart';
+import 'blocs/blocs.dart';
+import 'configs/configs.dart';
 
 class App extends StatelessWidget {
 
@@ -57,10 +58,9 @@ class _AppViewState extends State<AppView> {
           listener: (context, state) {
             switch (state.status) {
               case AuthenticationStatus.authenticated:
-                /*_navigator.pushAndRemoveUntil<void>(
-                  HomePage.route(),
-                      (route) => false,
-                );*/
+                _navigator.pushAndRemoveUntil<void>(
+                  AfterLoginPage.route(user: state.user,), (route) => false,
+                );
                 break;
               case AuthenticationStatus.unauthenticated:
                 _navigator.pushAndRemoveUntil<void>(

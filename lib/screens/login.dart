@@ -27,7 +27,10 @@ class LoginPage extends StatelessWidget {
               RepositoryProvider.of<AuthenticationRepository>(context),
             );
           },
-          child: const LoginForm(),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15,),
+            child: const LoginForm(),
+          ),
         ),
       ),
     );

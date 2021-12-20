@@ -20,9 +20,13 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'zh_TW';
 
+  static String m0(userName) => "你好, ${userName}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "afterLoginGreeting": m0,
         "authenticationFailure": MessageLookupByLibrary.simpleMessage("認證失敗"),
+        "changePassword": MessageLookupByLibrary.simpleMessage("更改密碼"),
         "email": MessageLookupByLibrary.simpleMessage("電子信箱"),
         "invalidEmail": MessageLookupByLibrary.simpleMessage("信箱格式錯誤"),
         "invalidPassword": MessageLookupByLibrary.simpleMessage("密碼錯誤"),

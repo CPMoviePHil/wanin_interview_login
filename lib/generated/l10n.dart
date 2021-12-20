@@ -119,6 +119,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Hello, {userName}`
+  String afterLoginGreeting(Object userName) {
+    return Intl.message(
+      'Hello, $userName',
+      name: 'afterLoginGreeting',
+      desc: '',
+      args: [userName],
+    );
+  }
+
+  /// `change password`
+  String get changePassword {
+    return Intl.message(
+      'change password',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -5,5 +5,7 @@
   "invalidEmail": "Invalid E-Mail",
   "password": "Password",
   "invalidPassword": "Invalid Password",
-  "authenticationFailure": "Authentication Failure"
+  "authenticationFailure": "Authentication Failure",
+  "afterLoginGreeting": "Hello, {userName}",
+  "changePassword": "change password"
 }
