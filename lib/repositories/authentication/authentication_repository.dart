@@ -14,10 +14,39 @@ class AuthenticationRepository {
     yield* _controller.stream;
   }
 
-  Future<void> logIn({
+  Future<void> _logIn ({
     required String email,
     required String password,
   }) async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      LogHelper.d(context: null, msg: userCredential.user.toString());
+      await Future.delayed(
+        const Duration(milliseconds: 300), () => _controller.add(AuthenticationStatus.authenticated,),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        LogHelper.d(context: null, msg: "login error:$e, e.code:${e.code}, No user found for that email.");
+      } else if (e.code == 'wrong-password') {
+        LogHelper.d(context: null, msg: "login error:$e, e.code:${e.code}, Wrong password provided for that user.");
+      } else {
+        LogHelper.d(context: null, msg: "login other error:$e");
+      }
+      throw e.code;
+    } catch (e) {
+      LogHelper.d(context: null, msg: "login error:$e");
+    }
+  }
+
+  Future<void> register ({
+    required String email,
+    required String password,
+  }) async {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    LogHelper.d(context: null, msg: "currentUSER:$currentUser");
     try {
       UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
@@ -29,14 +58,21 @@ class AuthenticationRepository {
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        LogHelper.d(context: null, msg: "error:$e, The password provided is too weak.");
+        LogHelper.d(context: null, msg: "register error:$e, e.code:${e.code}, The password provided is too weak.");
+        throw e.code;
       } else if (e.code == 'email-already-in-use') {
-        LogHelper.d(context: null, msg: "error:$e, The account already exists for that email.");
+        LogHelper.d(context: null, msg: "register error:$e, e.code:${e.code}, The account already exists for that email.");
+        await _logIn(
+          email: email,
+          password: password,
+        );
       } else {
-        LogHelper.d(context: null, msg: "?????:$e");
+        LogHelper.d(context: null, msg: "register other error:$e");
+        throw e.code;
       }
     } catch (e) {
-      LogHelper.d(context: null, msg: "error:$e");
+      LogHelper.d(context: null, msg: "register error:$e");
+      rethrow;
     }
   }
 
