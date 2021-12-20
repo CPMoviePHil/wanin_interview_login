@@ -13,7 +13,7 @@ class LogHelper {
     required this.msg,
   }) {
     _consoleLog(
-      context: context!,
+      context: context,
     );
   }
 
