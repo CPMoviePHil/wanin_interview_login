@@ -18,7 +18,7 @@ class AfterLoginPage extends StatelessWidget {
     required AuthenticationRepository authenticationRepository,
   }) : _authenticationRepository = authenticationRepository, super (key: key,);
 
-  static Route route({
+  static Route route ({
     required User user,
     required AuthenticationRepository authenticationRepository,
   }) {

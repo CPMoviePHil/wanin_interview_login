@@ -33,6 +33,8 @@ class ChangePasswordForm extends StatelessWidget {
         } else if (state.status.isSubmissionSuccess) {
           messenger.showSnackBar(message: S.of(context).changePasswordSuccessfully,);
           dialogHelper.dismissDialog();
+          await Future.delayed(const Duration(milliseconds: 500));
+          messenger.hideSnackBar();
         }
       },
       child: Column(

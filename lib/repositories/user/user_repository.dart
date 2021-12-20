@@ -13,4 +13,10 @@ class UserRepository {
       ),);
     }
   }
+
+  void clearUser() {
+    if (_user != null) {
+      _user = null;
+    }
+  }
 }

@@ -39,6 +39,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       ) async {
     switch (event.status) {
       case AuthenticationStatus.unauthenticated:
+        _userRepository.clearUser();
         return emit(const AuthenticationState.unauthenticated());
       case AuthenticationStatus.authenticated:
         final user = await _tryGetUser();

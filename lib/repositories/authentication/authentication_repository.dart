@@ -78,7 +78,7 @@ class AuthenticationRepository {
 
   Future<void> logOut() async{
     FirebaseAuth.instance.signOut();
-    Future.delayed(const Duration(seconds: 2), () => _controller.add(AuthenticationStatus.unauthenticated),);
+    Future.delayed(const Duration(seconds: 1), () => _controller.add(AuthenticationStatus.unauthenticated),);
   }
 
   void dispose() => _controller.close();
