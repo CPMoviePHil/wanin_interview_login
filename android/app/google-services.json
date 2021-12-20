@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1085237481144",
+    "project_id": "wanin-interview-login",
+    "storage_bucket": "wanin-interview-login.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085237481144:android:2b0c7bcaacb1f6c0de2e4d",
+        "android_client_info": {
+          "package_name": "com.example.wanin_interview_login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085237481144-am1aiducklm6o9r31tm9g94a7q7m477m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wanin_interview_login",
+            "certificate_hash": "54031a4c4909557e7a7f2e7491f23b2cdf929825"
+          }
+        },
+        {
+          "client_id": "1085237481144-h0k1db9tqr58fqtd49eah2ltbohs7btr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHUcZssNcBzMTm-duWURyToqjF0U8iYiU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085237481144-h0k1db9tqr58fqtd49eah2ltbohs7btr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
